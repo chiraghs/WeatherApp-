@@ -19,14 +19,14 @@
 
     <v-card-subtitle>
       <v-layout row>
-        <v-flex xs6 md6 lg6>
-      Date <br>
+        <v-flex xs7 md7 lg7>
+      {{dateBuilder()}} <br>
       <v-text>W1</v-text>
 
       <v-text>W2</v-text>
       </v-flex>
-      <v-flex xs6 md6 lg6  class="text-center">
-        <p style="background-color:#8C9EFF50;color:#263238;font-size:25px;border-radius:10px;" class="pa-4">7 C </p>       
+      <v-flex xs5 md5 lg5  class="text-center">
+        <p style="background-color:#8C9EFF50;color:#263238;font-size:25px;border-radius:10px;" class="pa-4">{{Math.round(weather.main.temp)}}'C</p>       
       </v-flex>
       </v-layout>
     </v-card-subtitle>
