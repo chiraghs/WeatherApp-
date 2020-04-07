@@ -13,22 +13,42 @@
       height="200px"
     ></v-img>
 
-    <v-card-title class="text-center">
-      CityName
+    <v-card-title class="text-center" style="margin-left:-12px">
+      {{searchcity}}
     </v-card-title>
 
     <v-card-subtitle>
       <v-layout row>
         <v-flex xs7 md7 lg7>
       {{dateBuilder()}} <br>
-      <v-text>W1</v-text>
-
-      <v-text>W2</v-text>
+      
       </v-flex>
       <v-flex xs5 md5 lg5  class="text-center">
-        <p style="background-color:#8C9EFF50;color:#263238;font-size:25px;border-radius:10px;" class="pa-4">{{Math.round(weather.main.temp)}}'C</p>       
+        <p style="background-color:#8C9EFF50;color:#263238;font-size:25px;border-radius:10px;" class="pa-4">{{Math.round(weather.main.temp)}}'C </p>       
       </v-flex>
       </v-layout>
+
+      <v-spacer></v-spacer>
+
+     <v-card-actions>
+      <v-btn
+        icon
+        @click="show = !show"
+      > 
+        <v class="ml-7" >More info</v>
+        <v-icon class="ml-2">{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider></v-divider>
+
+        <v-card-text>
+          I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+        </v-card-text>
+      </div>
+    </v-expand-transition>
     </v-card-subtitle>
 
       
@@ -55,7 +75,8 @@ export default {
         searchcity:'',
         Api_key:  'f761d3b89cd387171fbecf6e8d8e2472',
         url_base: 'https://api.openweathermap.org/data/2.5/weather?q=',
-        weather:   {}
+        weather:   {},
+        show: false
       }
     },
 
