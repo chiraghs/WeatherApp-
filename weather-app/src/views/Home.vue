@@ -1,21 +1,16 @@
 <template>
-  <div >
-    {{searchcity}}
-    {{weather}}
-    {{listcard}}
-<v-layout>
-  <v-flex xs12 sm6 md3 lg2 class="pa-5" v-for='item in listcard' :key='item.name'>
+<div >
+<v-layout row wrap>
+  <v-flex  class="pa-5" xs12 sm6 md3 lg2  v-for='item in listcard.slice().reverse()' :key='item.name'>
      <v-card
-    class="mx-auto pa-2" 
-    
-  >
+    class="mx-auto pa-2" >
     <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+      src="../assets/hot.jpg"
       height="200px"
     ></v-img>
 
     <v-card-title class="text-center" style="margin-left:-12px">
-      {{item.name}}
+      {{item.name}},{{item.sys.country}}
     </v-card-title>
 
     <v-card-subtitle>
@@ -25,7 +20,7 @@
       
       </v-flex>
       <v-flex xs5 md5 lg5  class="text-center">
-        <p style="background-color:#8C9EFF50;color:#263238;font-size:25px;border-radius:10px;" class="pa-4">{{Math.round(item.weather.main.temp)}}'C </p>       
+        <p style="background-color:#8C9EFF50;color:#263238;font-size:25px;border-radius:10px;" class="pa-4">{{Math.round(item.main.temp)}}'C </p>       
       </v-flex>
       </v-layout>
 
@@ -45,9 +40,24 @@
       <div v-show="show">
         <v-divider></v-divider>
 
-        <v-card-text>
-          I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-        </v-card-text>
+        <v-list-item>
+      <v-list-item-icon>
+        <v-icon>mdi-send</v-icon>
+      </v-list-item-icon>
+      <v-list-item-subtitle>{{item.wind.speed}} km/h , {{item.wind.deg}}deg</v-list-item-subtitle>
+    </v-list-item>
+
+    <v-list-item>
+      <v-list-item-icon>
+        <v-icon>mdi-cloud-download</v-icon>
+      </v-list-item-icon>
+      <v-list-item-subtitle>{{item.clouds.all}}%</v-list-item-subtitle>
+    </v-list-item>
+
+    <v-list-item>
+      <v-list-item-info>{{item.weather[0].main}}, {{item.weather[0].description}} </v-list-item-info>
+    </v-list-item>
+
       </div>
     </v-expand-transition>
     </v-card-subtitle>
@@ -58,15 +68,20 @@
 
 
     
-  </v-card>
-  </v-flex>
+       </v-card>
+    </v-flex>
   </v-layout>
+  
   </div>
+
+
+
 </template>
 
 <script>
 
 import { bus } from '../main'
+
 
 export default {
   name: 'Home',
@@ -78,6 +93,7 @@ export default {
         url_base: 'https://api.openweathermap.org/data/2.5/weather?q=',
         weather:   {},
         listcard: [],
+        icon: '../assets/hot.jpg',
         show: false
       }
     },
@@ -86,6 +102,15 @@ export default {
       setResults(results){
         this.weather=results;
         this.listcard.push(results);
+        switch(parseInt(this.weather.main.temp)) {
+          case parseInt(this.weather.main.temp)> 4:
+            this.icon='../assets/snow.jpg'
+          break;
+          case parseInt(this.weather.main.temp)< 4:
+            this.icon='../assets/cold.jpg'
+          break;
+        default:this.icon ='../assets/hot.jpg'
+}
       },
       dateBuilder () {
       let d = new Date();
@@ -102,8 +127,7 @@ export default {
 
     created(){
       bus.$on('GetCity', (data) => {
-        if(this.searchcity.length > 3){
-          console.log(this.searchcity.length)
+        if(this.searchcity.length > 7){
           this.searchcity.shift()
           this.listcard.shift()
         }
