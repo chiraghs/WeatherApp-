@@ -2,6 +2,7 @@
   <div >
     {{searchcity}}
     {{weather}}
+    {{listcard}}
 <v-layout>
   <v-flex xs12 sm6 md3 lg2 class="pa-5">
      <v-card
@@ -72,10 +73,11 @@ export default {
 
   data(){
       return{
-        searchcity:'',
+        searchcity:[],
         Api_key:  'f761d3b89cd387171fbecf6e8d8e2472',
         url_base: 'https://api.openweathermap.org/data/2.5/weather?q=',
         weather:   {},
+        listcard: [],
         show: false
       }
     },
@@ -83,6 +85,7 @@ export default {
     methods:{
       setResults(results){
         this.weather=results;
+        //this.listcard.push(results);
       },
       dateBuilder () {
       let d = new Date();
@@ -99,8 +102,12 @@ export default {
 
     created(){
       bus.$on('GetCity', (data) => {
-        this.searchcity = data;
-        fetch(`${this.url_base}${this.searchcity}&units=metric&appid=${this.Api_key}`)
+        if(this.searchcity.length > 3){
+          console.log(this.searchcity.length)
+          this.searchcity.shift()
+        }
+        this.searchcity.push(data);
+        fetch(`${this.url_base}${this.searchcity[this.searchcity.length - 1]}&units=metric&appid=${this.Api_key}`)
         .then(res =>{
           return res.json();
         }).then(this.setResults);
