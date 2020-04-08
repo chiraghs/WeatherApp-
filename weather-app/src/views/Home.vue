@@ -85,7 +85,7 @@ export default {
     methods:{
       setResults(results){
         this.weather=results;
-        //this.listcard.push(results);
+        this.listcard.push(results);
       },
       dateBuilder () {
       let d = new Date();
@@ -105,6 +105,7 @@ export default {
         if(this.searchcity.length > 3){
           console.log(this.searchcity.length)
           this.searchcity.shift()
+          this.listcard.shift()
         }
         this.searchcity.push(data);
         fetch(`${this.url_base}${this.searchcity[this.searchcity.length - 1]}&units=metric&appid=${this.Api_key}`)
