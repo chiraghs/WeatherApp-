@@ -32,17 +32,22 @@ It contains.
 - A new tab will be opened in your browser
 
 You can also run additional npm tasks such as
+- `npm create todo-first-veutify`
 - `npm run build` to build your app for production
 - `npm i -g @vue/cli`
-- `npm create todo-first-veutify`
 -Select required and Continue
+
+OpenWeather Api
+
+- `SignUp` and get unique Api_key
+- `Login` and see config settings
+- `https://api.openweathermap.org/data/2.5/weather?q=` this format to get weather info of particular city
 
 ## Vuetify
 Vuetify is developed exactly according to Material Design spec. Every component is hand crafted to bring you the best possible UI tools to your next great app. The development doesn't stop at the core components outlined in Google's spec. Through the support of community members and sponsors, additional components will be designed and made available for everyone to enjoy.
 
 ## FireBase
-USed here for Hosting &&
-Firestore is used as real time database.
+USed here for Hosting
 
-## Responsive to XS,SM,MD,LG,XS
-![responsive Gif](/imagess/rform.png)  ![responsive Gif](/imagess/rdash.png) ![responsive Gif](/imagess/rteam.png)
+## OpenWeather Api
+For getting Weather info
