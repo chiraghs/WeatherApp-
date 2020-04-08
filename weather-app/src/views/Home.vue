@@ -5,8 +5,8 @@
      <v-card
     class="mx-auto pa-2" >
     <v-img
-      src="../assets/hot.jpg"
-      height="200px"
+      :src="getImgLink(parseFloat(item.main.temp))"
+      height="200px" alt=""
     ></v-img>
 
     <v-card-title class="text-center" style="margin-left:-12px">
@@ -93,7 +93,6 @@ export default {
         url_base: 'https://api.openweathermap.org/data/2.5/weather?q=',
         weather:   {},
         listcard: [],
-        icon: '../assets/hot.jpg',
         show: false
       }
     },
@@ -102,15 +101,21 @@ export default {
       setResults(results){
         this.weather=results;
         this.listcard.push(results);
-        console.log(parseFloat(this.weather.main.temp))
-          if (parseFloat(this.weather.main.temp) <= 4){
-            this.icon='../assets/snow.jpg';
-            console.log(parseFloat(this.weather.main.temp)-20)
-          }
-          else if(parseFloat(this.weather.main.temp)>= 4) {
-            this.icon='../assets/cold.jpg';
-            console.log(parseFloat(this.weather.main.temp)-10)
-          }
+      },
+      getImgLink(stemp){
+        if(stemp <=4){
+          return require('../assets/'+'snow'+'.jpg')
+        }
+        else if(stemp >=4 && stemp <16){
+          return require('../assets/'+'cold'+'.jpg')
+        }
+        else if(stemp >=16 && stemp <26){
+          return require('../assets/'+'normal'+'.jpg')
+        }
+        else{
+          return require('../assets/'+'hot'+'.jpg')
+        }
+          
       },
       dateBuilder () {
       let d = new Date();
