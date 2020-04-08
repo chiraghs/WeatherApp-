@@ -102,15 +102,15 @@ export default {
       setResults(results){
         this.weather=results;
         this.listcard.push(results);
-        switch(parseInt(this.weather.main.temp)) {
-          case parseInt(this.weather.main.temp)> 4:
-            this.icon='../assets/snow.jpg'
-          break;
-          case parseInt(this.weather.main.temp)< 4:
-            this.icon='../assets/cold.jpg'
-          break;
-        default:this.icon ='../assets/hot.jpg'
-}
+        console.log(parseFloat(this.weather.main.temp))
+          if (parseFloat(this.weather.main.temp) <= 4){
+            this.icon='../assets/snow.jpg';
+            console.log(parseFloat(this.weather.main.temp)-20)
+          }
+          else if(parseFloat(this.weather.main.temp)>= 4) {
+            this.icon='../assets/cold.jpg';
+            console.log(parseFloat(this.weather.main.temp)-10)
+          }
       },
       dateBuilder () {
       let d = new Date();
