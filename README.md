@@ -49,5 +49,11 @@ Vuetify is developed exactly according to Material Design spec. Every component 
 ## FireBase
 USed here for Hosting
 
+-`Inside project` file init firebase hosting and proceed
+-`(public) dist` folder to continue
+- `COnfig to single page app` index.html `yes`
+- `npm run build` to build application
+-`firebase serve` to check locally and `firebase deploy` for deploying
+
 ## OpenWeather Api
 For getting Weather info
