@@ -4,9 +4,9 @@
     {{weather}}
     {{listcard}}
 <v-layout>
-  <v-flex xs12 sm6 md3 lg2 class="pa-5">
+  <v-flex xs12 sm6 md3 lg2 class="pa-5" v-for='item in listcard' :key='item.name'>
      <v-card
-    class="mx-auto pa-2"
+    class="mx-auto pa-2" 
     
   >
     <v-img
@@ -15,7 +15,7 @@
     ></v-img>
 
     <v-card-title class="text-center" style="margin-left:-12px">
-      {{searchcity}}
+      {{item.name}}
     </v-card-title>
 
     <v-card-subtitle>
@@ -25,7 +25,7 @@
       
       </v-flex>
       <v-flex xs5 md5 lg5  class="text-center">
-        <p style="background-color:#8C9EFF50;color:#263238;font-size:25px;border-radius:10px;" class="pa-4">{{Math.round(weather.main.temp)}}'C </p>       
+        <p style="background-color:#8C9EFF50;color:#263238;font-size:25px;border-radius:10px;" class="pa-4">{{Math.round(item.weather.main.temp)}}'C </p>       
       </v-flex>
       </v-layout>
 
