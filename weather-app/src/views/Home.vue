@@ -1,7 +1,7 @@
 <template>
 <div >
 <v-layout row wrap>
-  <v-flex  class="pa-5" xs12 sm6 md3 lg2  v-for='item in listcard.slice().reverse()' :key='item.name'>
+  <v-flex  class="pa-5" xs12 sm6 md4 lg3  v-for='item in listcard.slice().reverse()' :key='item.name'>
      <v-card
     class="mx-auto pa-2" >
     <v-img
@@ -17,10 +17,10 @@
       <v-layout row>
         <v-flex xs7 md7 lg7>
       {{dateBuilder()}} <br>
-      
+
       </v-flex>
       <v-flex xs5 md5 lg5  class="text-center">
-        <p style="background-color:#8C9EFF50;color:#263238;font-size:25px;border-radius:10px;" class="pa-4">{{Math.round(item.main.temp)}}'C </p>       
+        <p style="background-color:#8C9EFF50;color:#263238;font-size:25px;border-radius:10px;" class="pa-4">{{Math.round(item.main.temp)}}'C </p>
       </v-flex>
       </v-layout>
 
@@ -30,7 +30,7 @@
       <v-btn
         icon
         @click="show = !show"
-      > 
+      >
         <v class="ml-7" >More info</v>
         <v-icon class="ml-2">{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
       </v-btn>
@@ -49,6 +49,27 @@
 
     <v-list-item>
       <v-list-item-icon>
+        <v-icon>mdi-book</v-icon>
+      </v-list-item-icon>
+      <v-list-item-subtitle>{{item.main.pressure}} </v-list-item-subtitle>
+    </v-list-item>
+
+    <v-list-item>
+      <v-list-item-icon>
+        <v-icon>mdi-home</v-icon>
+      </v-list-item-icon>
+      <v-list-item-subtitle>{{item.main.humidity}}</v-list-item-subtitle>
+    </v-list-item>
+
+    <v-list-item>
+      <v-list-item-icon>
+        <v-icon>mdi-menu</v-icon>
+      </v-list-item-icon>
+      <v-list-item-subtitle>{{item.main.temp_min}}</v-list-item-subtitle>
+    </v-list-item>
+
+    <v-list-item>
+      <v-list-item-icon>
         <v-icon>mdi-cloud-download</v-icon>
       </v-list-item-icon>
       <v-list-item-subtitle>{{item.clouds.all}}%</v-list-item-subtitle>
@@ -62,16 +83,15 @@
     </v-expand-transition>
     </v-card-subtitle>
 
-      
 
       <v-spacer></v-spacer>
 
 
-    
+
        </v-card>
     </v-flex>
   </v-layout>
-  
+
   </div>
 
 
@@ -89,6 +109,8 @@ export default {
   data(){
       return{
         searchcity:[],
+        unitt:'metric',
+        langg:'hi',
         Api_key:  'f761d3b89cd387171fbecf6e8d8e2472',
         url_base: 'https://api.openweathermap.org/data/2.5/weather?q=',
         weather:   {},
@@ -115,7 +137,7 @@ export default {
         else{
           return require('../assets/'+'hot'+'.jpg')
         }
-          
+
       },
       dateBuilder () {
       let d = new Date();
@@ -126,7 +148,7 @@ export default {
       let month = months[d.getMonth()];
       let year = d.getFullYear();
       return `${day} ${date} ${month} ${year}`;
-      
+
     }
     },
 
@@ -137,14 +159,12 @@ export default {
           this.listcard.shift()
         }
         this.searchcity.push(data);
-        fetch(`${this.url_base}${this.searchcity[this.searchcity.length - 1]}&units=metric&appid=${this.Api_key}`)
+        fetch(`${this.url_base}${this.searchcity[this.searchcity.length - 1]}&units=${this.unitt}&appid=${this.Api_key}&lang=${this.langg}`)
         .then(res =>{
           return res.json();
         }).then(this.setResults);
       })
     }
 
-   
-  
   }
 </script>

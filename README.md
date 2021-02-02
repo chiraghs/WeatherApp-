@@ -7,12 +7,10 @@
 ![Product Gif](/images/main.png)
 
 
-**Weather app*  is a beautiful resource built over [Vuetify](https://vuetifyjs.com/en/), Vuetify is the official Vuejs version.  Using the this app is pretty simple but requires basic knowledge of Javascript, [Vuejs](https://vuejs.org/v2/guide/) ,[Vuetify](https://vuetifyjs.com/)and [Vue-Router](https://router.vuejs.org/en/).
 
-I have created it thinking of learning fetch api calls.
 
 It contains.
---DashBoard Image above 
+--DashBoard Image above
 
 --Tab Page
 ![Product Gif](/images/tab.png)
@@ -20,7 +18,7 @@ It contains.
 
 ------------------------------------------------------------
 
---Mobile 
+--Mobile
 ![Product Gif](/images/responsive.png)
 
 
@@ -29,15 +27,11 @@ It contains.
 
 ## Getting Started
 - Install Nodejs from [Nodejs Official Page](https://nodejs.org/en/)
-- Navigate to the project
+- Navigate to the project `cd weather-app`
 - Run `npm run serve` to start a local development server
 - A new tab will be opened in your browser
 
-You can also run additional npm tasks such as
-- `npm create todo-first-veutify`
-- `npm run build` to build your app for production
-- `npm i -g @vue/cli`
--Select required and Continue
+
 
 OpenWeather Api
 
@@ -45,8 +39,6 @@ OpenWeather Api
 - `Login` and see config settings
 - `https://api.openweathermap.org/data/2.5/weather?q=` this format to get weather info of particular city
 
-## Vuetify
-Vuetify is developed exactly according to Material Design spec. Every component is hand crafted to bring you the best possible UI tools to your next great app. The development doesn't stop at the core components outlined in Google's spec. Through the support of community members and sponsors, additional components will be designed and made available for everyone to enjoy.
 
 ## FireBase
 USed here for Hosting
@@ -58,4 +50,6 @@ USed here for Hosting
 -`firebase serve` to check locally and `firebase deploy` for deploying
 
 ## OpenWeather Api
-For getting Weather info
+For getting Weather info Search for a city name and show their weather
+For a particular city, you need to show a comprehensive view of the city’s weather.
+All the relevant information is available in the API.
